@@ -1,5 +1,7 @@
 package model;
-public class Usuario {
+
+public abstract class Usuario implements Autenticable {
+
     private int id;
     private String nombre;
     private String apellido;
@@ -66,17 +68,6 @@ public class Usuario {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", rol='" + rol + '\'' +
-                '}';
-    }
 
     public boolean login(String email, String password){
         return email.equals(this.email) && password.equals(this.password);
@@ -93,4 +84,11 @@ public class Usuario {
         Usuario u = (Usuario) obj;
         return  email.equals(u.email);
     }
+
+    @Override
+    public String toString() {
+        return getDatos();
+    }
+
+    abstract public String getDatos();
 }
