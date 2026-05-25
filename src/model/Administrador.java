@@ -1,9 +1,6 @@
 package model;
 
-import java.util.List;
-
 public class Administrador extends Usuario {
-
 
     public Administrador(String nombre, String apellido, String email, String password) {
         super(nombre, apellido, email, password, Roles.ADMINISTRADOR);

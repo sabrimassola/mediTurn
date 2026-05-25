@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public abstract class Usuario implements Autenticable {
 
     private int id;
@@ -11,7 +13,7 @@ public abstract class Usuario implements Autenticable {
 
     private static int contadorId;
 
-    public Usuario(){
+    public Usuario() {
         this.id = ++contadorId;
     }
 
@@ -60,20 +62,17 @@ public abstract class Usuario implements Autenticable {
         return rol;
     }
 
-    public void setRol(Roles rol) {
-        this.rol = rol;
-    }
-
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-
-    public boolean login(String email, String password){
-        return email.equals(this.email) && password.equals(this.password);
+    @Override
+    public boolean login(String email, String password) {
+        return Objects.equals(this.email, email) && Objects.equals(this.password, password);
     }
 
-    public void logout(){
+    @Override
+    public void logout() {
         System.out.println("Sesion cerrada");
     }
 
@@ -82,7 +81,7 @@ public abstract class Usuario implements Autenticable {
         if (this == obj) return true;
         if (!(obj instanceof Usuario)) return false;
         Usuario u = (Usuario) obj;
-        return  email.equals(u.email);
+        return Objects.equals(email, u.email);
     }
 
     @Override
