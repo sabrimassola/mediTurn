@@ -1,5 +1,8 @@
 package model;
 
+import exception.DatosInvalidosException;
+import exception.TurnoNoDisponibleException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +32,23 @@ public class Paciente extends Usuario {
     }
 
     public void reservarTurno(Turno turno) {
+        if(turno == null){
+            throw new DatosInvalidosException("El turno no puede ser nulo");
+        }
+        if(turno.getEstado() == EstadoTurno.CANCELADO){
+            throw new TurnoNoDisponibleException("No se puede reservar un turno cancelado");
+        }
         if (!this.turnos.contains(turno)) {
             this.turnos.add(turno);
-            turno.setEstado(EstadoTurno.RESERVADO);
             turno.getProfesional().agregarTurno(turno);
         }
     }
 
     public void cancelarTurno(Turno turno) {
-        turno.cancelarTurno();
+        if (turno == null) {
+            throw new DatosInvalidosException("El turno no puede ser nulo");
+        }
+        turno.cancelar();
     }
 
     public List<Turno> getTurnos() {

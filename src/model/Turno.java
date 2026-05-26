@@ -1,4 +1,7 @@
 package model;
+import exception.DatosInvalidosException;
+import exception.TurnoNoDisponibleException;
+
 
 import java.time.LocalDateTime;
 
@@ -13,6 +16,15 @@ public class Turno {
     private static int contadorId;
 
     public Turno(Paciente paciente, Profesional profesional, LocalDateTime fechaHora, String observaciones) {
+        if (paciente == null) {
+            throw new DatosInvalidosException("El paciente no puede ser nulo");
+        }
+        if (profesional == null) {
+            throw new DatosInvalidosException("El profesional no puede ser nulo");
+        }
+        if (fechaHora == null) {
+            throw new DatosInvalidosException("La fecha y hora no puede ser nula");
+        }
         this.id = ++contadorId;
         this.paciente = paciente;
         this.profesional = profesional;
@@ -45,28 +57,32 @@ public class Turno {
         return observaciones;
     }
 
-
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-    public void setEstado(EstadoTurno estado) {
-        this.estado = estado;
-    }
-
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
 
-    public void confirmarTurno() {
+    public void confirmar() {
+        if(estado == EstadoTurno.CANCELADO){
+            throw new TurnoNoDisponibleException("No se puede confirmar un turno cancelado");
+        }
         this.estado = EstadoTurno.CONFIRMADO;
     }
 
-    public void cancelarTurno() {
+    public void cancelar() {
+        if(estado == EstadoTurno.CANCELADO){
+            throw new TurnoNoDisponibleException("El turno ya esta cancelado");
+        }
         this.estado = EstadoTurno.CANCELADO;
+
     }
 
-    public void reprogramarTurno(LocalDateTime fechaNueva) {
+    public void reprogramar(LocalDateTime fechaNueva) {
+        if(estado == EstadoTurno.CANCELADO){
+            throw new TurnoNoDisponibleException("No se puede reprogramar un turno cancelado");
+        }
+        if(fechaNueva == null){
+            throw new DatosInvalidosException("La nueva fecha no puede ser nula");
+        }
         this.fechaHora = fechaNueva;
         this.estado = EstadoTurno.REPROGRAMADO;
     }
