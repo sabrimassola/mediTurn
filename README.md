@@ -42,7 +42,6 @@ Creá un archivo `.env` en la raíz del proyecto con el siguiente contenido:
 DB_URL=jdbc:mysql://localhost:3306/mediturndb?serverTimezone=America/Argentina/Mendoza
 DB_USER=usuario
 DB_PASSWORD=contraseña
-> ⚠️ El archivo `.env` está ignorado por Git para proteger las credenciales. Nunca subas tu contraseña real al repositorio.
 
 Si usás IntelliJ IDEA, podés cargar las variables manualmente en:
 `Run > Edit Configurations > Environment Variables`
