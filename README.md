@@ -39,10 +39,11 @@ Sistema de gestión de turnos médicos desarrollado en Java como proyecto de apr
 Este proyecto requiere variables de entorno para conectarse a la base de datos.
 
 Creá un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+```
 DB_URL=jdbc:mysql://localhost:3306/mediturndb?serverTimezone=America/Argentina/Mendoza
 DB_USER=usuario
 DB_PASSWORD=contraseña
-
+```
 Si usás IntelliJ IDEA, podés cargar las variables manualmente en:
 `Run > Edit Configurations > Environment Variables`
 
