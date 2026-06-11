@@ -10,10 +10,15 @@ Sistema de gestión de turnos médicos desarrollado en Java como proyecto de apr
 * Gestión de turnos utilizando Collections Framework (List y Map).
 * Implementación de patrones de diseño Factory Method y Observer.
 * Sistema básico de autenticación mediante interfaz Autenticable.
+* Conexión a base de datos MySQL mediante JDBC.
+* Base de datos relacional diseñada con MySQL (schema.sql incluido en el repositorio).
 
 ## Tecnologías utilizadas
 
-* Java
+* Java 21
+* Maven
+* MySQL
+* JDBC
 * Programación Orientada a Objetos
 * Collections Framework
 * Git y GitHub
@@ -29,9 +34,22 @@ Sistema de gestión de turnos médicos desarrollado en Java como proyecto de apr
 * Factory Method
 * Observer
 
+## ⚙️ Configuración del entorno
+
+Este proyecto requiere variables de entorno para conectarse a la base de datos.
+
+Creá un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+DB_URL=jdbc:mysql://localhost:3306/mediturndb?serverTimezone=America/Argentina/Mendoza
+DB_USER=usuario
+DB_PASSWORD=contraseña
+> ⚠️ El archivo `.env` está ignorado por Git para proteger las credenciales. Nunca subas tu contraseña real al repositorio.
+
+Si usás IntelliJ IDEA, podés cargar las variables manualmente en:
+`Run > Edit Configurations > Environment Variables`
+
 ## Próximos pasos
 
-* Persistencia de datos con JDBC y MySQL.
+* Implementación de repositorios con JDBC (base de datos ya creada).
 * Transacciones.
 * Testing con JUnit y Mockito.
 * API REST con Spring Boot.
